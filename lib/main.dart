@@ -12,10 +12,10 @@ import 'model/filme.dart';
 ///# MAIN - Ponto de entrada do app
 void main() {
   //# Necessário para inicializar FFI
-  sqfliteFfiInit();
+  //sqfliteFfiInit();
 
   //# Define o factory global para usar o banco de dados SQLite com FFI
-  databaseFactory = databaseFactoryFfi;
+  //databaseFactory = databaseFactoryFfi;
   runApp(const MyApp());
 }
 

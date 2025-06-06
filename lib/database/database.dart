@@ -33,18 +33,19 @@ class AppDatabase {
 
   ///# MIGRAÇÃO - Criação da tabela 'filmes'
   Future<void> _criarBanco(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE filmes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        urlImagem TEXT NOT NULL,         //# URL do cartaz
-        titulo TEXT NOT NULL,            //# Nome do filme
-        genero TEXT NOT NULL,            //# Gênero (ex: ação)
-        faixaEtaria TEXT NOT NULL,       //# Classificação indicativa
-        duracao TEXT NOT NULL,           //# Ex: "2h10min"
-        pontuacao REAL NOT NULL,         //# Nota de 0 a 5
-        descricao TEXT NOT NULL,         //# Sinopse
-        ano INTEGER NOT NULL             //# Ano de lançamento
-      )
-    ''');
+    await db.execute(
+      ''' CREATE TABLE filmes (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          urlImagem TEXT NOT NULL,
+          titulo TEXT NOT NULL,
+          genero TEXT NOT NULL,
+          faixaEtaria TEXT NOT NULL,
+          duracao TEXT NOT NULL,
+          pontuacao REAL NOT NULL,
+          descricao TEXT NOT NULL,
+          ano INTEGER NOT NULL
+        )
+      ''');
+
   }
 }
