@@ -69,15 +69,24 @@ class _ListaFilmesViewState extends State<ListaFilmesView> {
           ListTile(
             leading: const Icon(Icons.edit),
             title: const Text('Alterar'),
-            onTap: () {
+            onTap: () async {
               Navigator.pop(context);
-              Navigator.pushNamed(context, '/form', arguments: filme);
+              final alterado = await Navigator.pushNamed(
+                context,
+                '/form',
+                arguments: filme,
+              );
+
+              if (alterado == true) {
+                _carregarFilmes(); //$ Atualiza lista após edição
+              }
             },
           ),
         ],
       ),
     );
   }
+
 
   ///# DELETE - Exclui filme ao arrastar
   Future<void> _deletarFilme(int id) async {
@@ -159,8 +168,12 @@ class _ListaFilmesViewState extends State<ListaFilmesView> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, '/form')
-            .then((_) => _carregarFilmes()), //$ Atualiza ao voltar do cadastro
+        onPressed: () async {
+          final novo = await Navigator.pushNamed(context, '/form');
+          if (novo == true) {
+            _carregarFilmes(); //$ Atualiza ao voltar do cadastro
+          }
+        },
         child: const Icon(Icons.add),
       ),
     );
